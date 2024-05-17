@@ -15,12 +15,12 @@ const Rooms = () => {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    const searchQuery = searchParams.get('searchQuery');
-    const roomType = searchParams.get('roomType');
+    const searchQueryParam = searchParams.get('searchQuery');
+    const roomTypeParam = searchParams.get('roomType');
 
-    if (roomType) setRoomTypeFilter(roomType);
-    if (searchQuery) setSearchQuery(searchQuery);
-  }, []);
+    if (roomTypeParam) setRoomTypeFilter(roomTypeParam);
+    if (searchQueryParam) setSearchQuery(searchQueryParam);
+  }, [searchParams]); // Include searchParams in the dependency array
 
   async function fetchData() {
     return getRooms();
@@ -35,7 +35,6 @@ const Rooms = () => {
   const filterRooms = (rooms: Room[]) => {
     return rooms.filter(room => {
       // Apply room type filter
-
       if (
         roomTypeFilter &&
         roomTypeFilter.toLowerCase() !== 'all' &&
@@ -44,7 +43,7 @@ const Rooms = () => {
         return false;
       }
 
-      //   Apply search query filter
+      // Apply search query filter
       if (
         searchQuery &&
         !room.name.toLowerCase().includes(searchQuery.toLowerCase())
