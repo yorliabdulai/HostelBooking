@@ -17,7 +17,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: 'Hostel Booking App',
-  description: 'Discover the best hostels on campus',
+  description: 'Discover the best hostels on campus at affordable prices',
 };
 
 export default function RootLayout({
